@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3635208591652399654}
   - component: {fileID: 2859814299520019538}
   - component: {fileID: -176288651157990165}
+  - component: {fileID: 3601433069594579856}
+  - component: {fileID: 1881358979910083568}
   m_Layer: 0
   m_Name: AttackBound
   m_TagString: Untagged
@@ -58,7 +60,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: "\uD070\uD3C9\uD0C0"
+  skillIcon: {fileID: 0}
+  skillType: 0
   skillDesc: 
   skillDamageMult: 1
   coolTime: 0
-  maxRange: 1
+--- !u!114 &3601433069594579856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297297717349585161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621e9f52218fea34cb9a8e9e56df0126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwake: {fileID: 8300000, guid: 0a6fc4bc10d2116458778f2d09f04738, type: 3}
+  onDie: {fileID: 0}
+--- !u!114 &1881358979910083568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297297717349585161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

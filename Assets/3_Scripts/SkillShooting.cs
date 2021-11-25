@@ -37,7 +37,7 @@ public class SkillShooting : MonoBehaviour
 
     private void ObserveSkillShot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             SkillShot(Skills[0]);
         }
@@ -69,7 +69,6 @@ public class SkillShooting : MonoBehaviour
         {
             return;
         }
-
         skillTimers[skill].SetLastAttackTime();
 
         Skill clone = null;
@@ -84,7 +83,7 @@ public class SkillShooting : MonoBehaviour
         }
         else if(skill.skillType == SkillType.Projectile)
         {
-            clone = Instantiate(skill, transform.position + playerController.GetMouseDir() * 2 + Vector3.up, Quaternion.LookRotation(playerController.GetMouseDir()));
+            clone = Instantiate(skill, transform.position + playerController.GetMouseDir() + Vector3.up, Quaternion.LookRotation(playerController.GetMouseDir()));
         }
 
         clone.Init(playerController.Status.Damage, gameObject);

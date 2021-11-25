@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 54785160050736224}
   - component: {fileID: 135257664758760022}
   - component: {fileID: -3401656910274446702}
+  - component: {fileID: -8236879916852653615}
   m_Layer: 0
   m_Name: 06LeafShot
   m_TagString: Untagged
@@ -5009,4 +5010,17 @@ MonoBehaviour:
   skillDesc: "\uB098\uBB47\uC78E\uB3C4 \uC798 \uB0A0\uB9AC\uBA74 \uBB34\uAE30\uAC00
     \uB420 \uC218 \uC788\uB2E4!"
   skillDamageMult: 1
-  coolTime: 3
+  coolTime: 1
+--- !u!114 &-8236879916852653615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698648575761504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 54964438602352006}
   - component: {fileID: -6274399992944887407}
   - component: {fileID: -6664851531667389979}
+  - component: {fileID: 3608504705508531302}
   m_Layer: 0
   m_Name: 09Carrot
   m_TagString: Untagged
@@ -4974,7 +4975,20 @@ MonoBehaviour:
   skillDesc: "\uB2F9\uADFC\uC744 \uB358\uC838 \uC801\uC744 \uB9DE\uCD98\uB2E4. \uC0B4\uC0C1\uB825\uC740
     \uC88B\uC9C0 \uC54A\uB2E4."
   skillDamageMult: 1
-  coolTime: 1
+  coolTime: 0.5
+--- !u!114 &3608504705508531302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049234075114562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &1082437586817624
 GameObject:
   m_ObjectHideFlags: 0

@@ -4798,7 +4798,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 23ea21e42fc2443382558f570d4e4593, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14595,6 +14594,7 @@ GameObject:
   - component: {fileID: -5616925374950020130}
   - component: {fileID: 7140534108495501696}
   - component: {fileID: 4489676778716644092}
+  - component: {fileID: -8382179422646874384}
   m_Layer: 0
   m_Name: 05WaterPool
   m_TagString: Untagged
@@ -14634,7 +14634,7 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: 52d90cb2cccd56240baf854f09c97862, type: 3}
   skillType: 2
   skillDesc: "\uC774 \uC628\uCC9C\uC740 \uC544\uC8FC \uD56B\uD558\uB2E4!"
-  skillDamageMult: 1
+  skillDamageMult: 3
   coolTime: 10
 --- !u!114 &7140534108495501696
 MonoBehaviour:
@@ -14648,6 +14648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 1
+  repeatTime: 1
 --- !u!135 &4489676778716644092
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14661,6 +14663,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8382179422646874384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163832459717793260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 8
 --- !u!1 &5163832459813478211
 GameObject:
   m_ObjectHideFlags: 0
@@ -14736,7 +14751,7 @@ ParticleSystem:
   serializedVersion: 7
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

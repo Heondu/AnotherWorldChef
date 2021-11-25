@@ -5102,6 +5102,7 @@ GameObject:
   - component: {fileID: 3965308637781464796}
   - component: {fileID: 1578855233385738015}
   - component: {fileID: 2491461397750331247}
+  - component: {fileID: 4230109426671670137}
   m_Layer: 0
   m_Name: 14FrostBomb
   m_TagString: Untagged
@@ -5196,6 +5197,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 1
+  repeatTime: 1
+  waitTime: 0
+--- !u!114 &4230109426671670137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 5
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0

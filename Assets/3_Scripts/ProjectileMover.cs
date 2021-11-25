@@ -64,6 +64,7 @@ public class ProjectileMover : MonoBehaviour
             Destroy(gameObject);
         }
 	}
+
     void OnCollisionEnter(Collision collision)
     {
         rb.constraints = RigidbodyConstraints.FreezeAll;

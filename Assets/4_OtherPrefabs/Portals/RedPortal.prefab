@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7732934595883139476}
+  - component: {fileID: 5588566690313319398}
+  - component: {fileID: 4881116671019166074}
   m_Layer: 0
   m_Name: RedPortal
   m_TagString: Untagged
@@ -31,6 +33,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5588566690313319398
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732934595883139477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4881116671019166074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732934595883139477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8459b8ce6480f6c408d18d482b8711d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBossPortal: 1
 --- !u!1001 &7732934595191141853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41,6 +69,10 @@ PrefabInstance:
     - target: {fileID: 127902, guid: 27856c31c3afe6244a0f17a4fef0905a, type: 3}
       propertyPath: m_Name
       value: PortalRedIdle
+      objectReference: {fileID: 0}
+    - target: {fileID: 127902, guid: 27856c31c3afe6244a0f17a4fef0905a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 496276, guid: 27856c31c3afe6244a0f17a4fef0905a, type: 3}
       propertyPath: m_RootOrder

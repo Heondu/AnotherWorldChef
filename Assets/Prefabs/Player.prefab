@@ -1670,7 +1670,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!114 &9024082783294668314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,11 +1684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills:
-  - {fileID: 2027990732017185876, guid: ea471fb16b008d44886490483edd9cee, type: 3}
-  - {fileID: 8193456808795976859, guid: 76d29242e44bd1d4481337c8f53681ac, type: 3}
   - {fileID: -626973195876438773, guid: 3cefa829969829542bf182f16e268213, type: 3}
   - {fileID: 8332227187571605971, guid: c104d65324a2c614bbe6b0f55c0c4281, type: 3}
-  - {fileID: 8332227187571605971, guid: c104d65324a2c614bbe6b0f55c0c4281, type: 3}
+  - {fileID: 8193456808795976859, guid: 76d29242e44bd1d4481337c8f53681ac, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &9024082783294668317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1716,9 +1716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8177dff3a7c2b6c4b92bc33174e81fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
   rotateSpeed: 5
   maxCombo: 3
+  canBeDamaged: 1
   onHPValueChanged:
     m_PersistentCalls:
       m_Calls: []

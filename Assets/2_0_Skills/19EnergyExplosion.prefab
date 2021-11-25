@@ -24327,6 +24327,7 @@ GameObject:
   - component: {fileID: -6752647620083202776}
   - component: {fileID: 6487009301590152652}
   - component: {fileID: 6620807343325810472}
+  - component: {fileID: 5030294318606453320}
   m_Layer: 0
   m_Name: 19EnergyExplosion
   m_TagString: Untagged
@@ -29242,6 +29243,8 @@ MonoBehaviour:
   skillDesc: 
   skillDamageMult: 1
   coolTime: 0
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &-6752647620083202776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29268,6 +29271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 2
+  repeatTime: 1
+  waitTime: 1
 --- !u!135 &6620807343325810472
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29279,8 +29285,21 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5030294318606453320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535640691960112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 2
 --- !u!1 &1598199573090778
 GameObject:
   m_ObjectHideFlags: 0

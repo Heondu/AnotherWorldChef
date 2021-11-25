@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,9 +21,14 @@ public class Enemy : MonoBehaviour, ILivingEntity
     [SerializeField] private float chaseSpeed = 3;
     [SerializeField] private float rotateSpeed = 5;
     [SerializeField] private float chaseTimeAtHit = 5;
+    [SerializeField] private GameObject pickUpObject;
+    [Range(0, 100)][SerializeField] private int skillSpawnProb = 10;
     private Transform target;
     private bool isAttacking = false;
     private bool isHit = false;
+
+    public Dictionary<Skill, SkillTimer> skillTimers = new Dictionary<Skill, SkillTimer>();
+    private Skill nextSkill = null;
 
     private void Start()
     {
@@ -52,7 +58,18 @@ public class Enemy : MonoBehaviour, ILivingEntity
         if (colliders.Length > 0)
         {
             target = colliders[0].transform;
-            state = Vector3.Distance(target.position, transform.position) <= attackRange ? EnemyState.Attack : EnemyState.Chase;
+            if (Vector3.Distance(target.position, transform.position) > attackRange)
+            {
+                state = EnemyState.Chase;
+            }
+            else if (CheckForNextSkill())
+            {
+                state = EnemyState.Attack;
+            }
+            else
+            {
+                state = EnemyState.Idle;
+            }
         }
         else if (!isHit)
         {
@@ -111,10 +128,13 @@ public class Enemy : MonoBehaviour, ILivingEntity
                 break;
             case EnemyState.Attack:
                 if (isAttacking) break;
-                isAttacking = true;
                 navMeshAgent.ResetPath();
                 StartCoroutine("LookAt", target.position - transform.position);
-                animator.SetTrigger("attack");
+                if (nextSkill != null)
+                {
+                    isAttacking = true;
+                    animator.SetTrigger("attack");
+                }
                 break;
         }
     }
@@ -150,6 +170,8 @@ public class Enemy : MonoBehaviour, ILivingEntity
             navMeshAgent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             animator.SetTrigger("death");
+            if (Random.Range(0, 100) < skillSpawnProb)
+                Instantiate(pickUpObject, transform.position, Quaternion.identity);
             Destroy(gameObject, 5);
         }
     }
@@ -178,10 +200,62 @@ public class Enemy : MonoBehaviour, ILivingEntity
         }
     }
 
+    private bool CheckForNextSkill()
+    {
+        if (nextSkill != null) return true;
+
+        Skill skill = status.skills[Random.Range(0, status.skills.Count)];
+
+        if (skillTimers.ContainsKey(skill) == false)
+        {
+            skillTimers.Add(skill, new SkillTimer(skill, Time.time));
+            nextSkill = skill;
+            return true;
+        }
+        else if (skillTimers[skill].CanAttack() == false)
+        {
+            nextSkill = null;
+            return false;
+        }
+        else
+        {
+            nextSkill = skill;
+            return true;
+        }
+    }
+
     private void AttackStart()
     {
+        skillTimers[nextSkill].SetLastAttackTime();
+
         rigidbody.AddForce((target.position - transform.position).normalized * 100, ForceMode.Impulse);
-        Instantiate(status.skills[0], transform.position + (target.position - transform.position).normalized * attackRange + Vector3.up, Quaternion.identity).Init(status.Damage, gameObject);
+
+        Skill clone = null;
+        if (nextSkill.skillType == SkillType.Cursor)
+        {
+            clone = Instantiate(nextSkill, target.position, Quaternion.identity);
+        }
+        else if (nextSkill.skillType == SkillType.Explode)
+        {
+            clone = Instantiate(nextSkill, transform.position, Quaternion.identity);
+        }
+        else if (nextSkill.skillType == SkillType.Projectile)
+        {
+            clone = Instantiate(nextSkill, transform.position + transform.forward + Vector3.up, Quaternion.LookRotation(transform.forward));
+        }
+
+        clone.Init(status.Damage, gameObject);
+        AutoDestroy(clone.gameObject);
+        nextSkill = null;
+    }
+
+    private void AutoDestroy(GameObject hitInstance)
+    {
+        var hitPs = hitInstance.GetComponent<ParticleSystem>();
+        if (hitPs != null)
+        {
+            Destroy(hitInstance, hitPs.main.duration);
+        }
     }
 
     private void ComboCheck()

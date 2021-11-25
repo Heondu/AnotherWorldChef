@@ -14554,6 +14554,7 @@ GameObject:
   - component: {fileID: 135951470721667518}
   - component: {fileID: 2027990732017185876}
   - component: {fileID: 3384385456033994626}
+  - component: {fileID: 3961054040502535515}
   m_Layer: 0
   m_Name: 00FireStrike
   m_TagString: Untagged
@@ -19569,9 +19570,7 @@ MonoBehaviour:
   skillDesc: "\uC791\uC740 \uBD88\uC758 \uD654\uC0B4\uC744 \uB9CC\uB4E4\uC5B4 \uC804\uBC29\uC73C\uB85C
     \uBC1C\uC0AC\uD55C\uB2E4."
   skillDamageMult: 1
-  coolTime: 3
-  canAttack: 1
-  lastAttackTime: 0
+  coolTime: 0.5
 --- !u!114 &3384385456033994626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19586,6 +19585,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onAwake: {fileID: 8300000, guid: 06e8d56c0a8b9004e96c996508dd45d1, type: 3}
   onDie: {fileID: 0}
+--- !u!114 &3961054040502535515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449260960837898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &1450556779679700
 GameObject:
   m_ObjectHideFlags: 0

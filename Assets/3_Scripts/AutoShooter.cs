@@ -22,6 +22,7 @@ public class AutoShooter : MonoBehaviour
             count = interval;
             GameObject go = Instantiate(SkillPrefab, transform.position, Quaternion.Euler(0, countAngle % 360, 0));
             Debug.Log(go.transform.eulerAngles);
+            go.GetComponent<Skill>().Init(GetComponent<Skill>().damage, GetComponent<Skill>().eventInstigator);
         }
     }
 

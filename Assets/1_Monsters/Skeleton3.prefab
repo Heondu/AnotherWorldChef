@@ -3027,10 +3027,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc6a98daa4d9545bc45e55e1af826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 20
-  Damage: 10
+  MaxHP: 30
+  Damage: 5
   skills:
-  - {fileID: -176288651157990165, guid: 306f8cadf52478545b761081f232283f, type: 3}
+  - {fileID: 3476999225640148485, guid: 2ad01737a079ffa4dba46f20712e5807, type: 3}
+  - {fileID: -1107778679111608989, guid: 003ebb48245afa54883138bac95909e9, type: 3}
 --- !u!195 &-3019952054883502366
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3068,11 +3069,13 @@ MonoBehaviour:
   moveRange: 5
   detectRange: 5
   chaseRange: 10
-  attackRange: 2
+  attackRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
   chaseTimeAtHit: 5
+  pickUpObject: {fileID: 3201144611067504314, guid: ce32ba621a4c81c47bc21b9f5edcf22d, type: 3}
+  skillSpawnProb: 20
 --- !u!54 &8485631685361054818
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3102,7 +3105,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &1519277951811480
 GameObject:
   m_ObjectHideFlags: 0

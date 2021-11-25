@@ -54023,6 +54023,7 @@ GameObject:
   - component: {fileID: 7407543727557658331}
   - component: {fileID: 6409727482373269090}
   - component: {fileID: 1333703934280135250}
+  - component: {fileID: 570683195508592207}
   m_Layer: 0
   m_Name: 11HammerStrike
   m_TagString: Untagged
@@ -54063,7 +54064,7 @@ MonoBehaviour:
   skillType: 2
   skillDesc: "\uD070 \uB9DD\uCE58\uB97C \uB5A8\uC5B4\uB728\uB824 \uD0C0\uACA9\uC744
     \uAC00\uD55C\uB2E4."
-  skillDamageMult: 1
+  skillDamageMult: 3
   coolTime: 5
 --- !u!114 &6409727482373269090
 MonoBehaviour:
@@ -54077,6 +54078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 2
+  repeatTime: 1
+  waitTime: 1.5
 --- !u!135 &1333703934280135250
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -54090,6 +54094,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &570683195508592207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298813590846867463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &8298813591004904644
 GameObject:
   m_ObjectHideFlags: 0

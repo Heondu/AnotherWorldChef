@@ -24522,6 +24522,7 @@ GameObject:
   - component: {fileID: 436321878958183068}
   - component: {fileID: 4733807137111613894}
   - component: {fileID: 7738299585792311670}
+  - component: {fileID: -587297837459207579}
   m_Layer: 0
   m_Name: 12MeteorStrike
   m_TagString: Untagged
@@ -24576,6 +24577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 2
+  repeatTime: 1
+  waitTime: 1
 --- !u!135 &7738299585792311670
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24589,6 +24593,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-587297837459207579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842540418666017718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &2842540418735787457
 GameObject:
   m_ObjectHideFlags: 0

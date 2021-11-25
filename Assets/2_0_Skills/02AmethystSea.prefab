@@ -9805,6 +9805,7 @@ GameObject:
   - component: {fileID: -5198675531961168677}
   - component: {fileID: 8872908201856684074}
   - component: {fileID: 7113466402649344594}
+  - component: {fileID: 3293578302810751314}
   m_Layer: 0
   m_Name: 02AmethystSea
   m_TagString: Untagged
@@ -9859,6 +9860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
+  repeatTime: 3
 --- !u!135 &7113466402649344594
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9872,6 +9875,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3293578302810751314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360625045750079359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 8
 --- !u!1 &4360625045909643525
 GameObject:
   m_ObjectHideFlags: 0

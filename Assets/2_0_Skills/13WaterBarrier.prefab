@@ -9772,6 +9772,7 @@ GameObject:
   - component: {fileID: -4319780215191615873}
   - component: {fileID: 1424670953945054793}
   - component: {fileID: 692829210190162366}
+  - component: {fileID: -3769558937516740828}
   m_Layer: 0
   m_Name: 13WaterBarrier
   m_TagString: Untagged
@@ -9819,8 +9820,8 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: 52d90cb2cccd56240baf854f09c97862, type: 3}
   skillType: 2
   skillDesc: "\uBB3C \uAC10\uC625\uC73C\uB85C \uC801\uB4E4\uC744 \uAC00\uB46C\uBC84\uB9B0\uB2E4."
-  skillDamageMult: 1
-  coolTime: 0
+  skillDamageMult: 3
+  coolTime: 10
 --- !u!135 &1424670953945054793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9846,6 +9847,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
+  repeatTime: 1
+  waitTime: 0
+--- !u!114 &-3769558937516740828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509412756994637923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 9
 --- !u!1 &509412757977314489
 GameObject:
   m_ObjectHideFlags: 0

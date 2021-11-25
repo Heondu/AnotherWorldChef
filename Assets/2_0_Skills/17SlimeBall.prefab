@@ -19386,6 +19386,8 @@ GameObject:
   - component: {fileID: -3273825600253685860}
   - component: {fileID: 1679288441821036943}
   - component: {fileID: -1655407290869154641}
+  - component: {fileID: -209295065651674449}
+  - component: {fileID: 5172194451114629716}
   m_Layer: 0
   m_Name: 17SlimeBall
   m_TagString: Untagged
@@ -19455,6 +19457,8 @@ MonoBehaviour:
   skillDesc: "\uB9F9\uB3C5\uC744 \uD130\uB728\uB824 \uC801\uC744 \uACF5\uACA9\uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 3
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &-3273825600253685860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19505,3 +19509,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onAwake: {fileID: 8300000, guid: 968049c917af59d4694d0d00b530ba7f, type: 3}
   onDie: {fileID: 8300000, guid: b4659eb9e799f19499dd2bf1901904f0, type: 3}
+--- !u!114 &-209295065651674449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
+--- !u!135 &5172194451114629716
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}

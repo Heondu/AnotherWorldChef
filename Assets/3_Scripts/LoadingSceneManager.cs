@@ -7,13 +7,19 @@ public class LoadingSceneManager : MonoBehaviour
 {
     public static string nextScene;
     private AsyncOperation op;
-    //[SerializeField] Slider progressBar;
 
     private void Start()
     {
-        //StartCoroutine(LoadScene());
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadNextScene();
+        }
     }
 
     public static void LoadScene(string sceneName)
@@ -24,7 +30,6 @@ public class LoadingSceneManager : MonoBehaviour
 
     public void LoadNextScene()
     {
-        //SceneManager.LoadScene(nextScene);
         op.allowSceneActivation = true;
     }
 }

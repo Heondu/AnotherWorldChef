@@ -14484,6 +14484,7 @@ GameObject:
   - component: {fileID: -5927366682648674862}
   - component: {fileID: 3832789947508125345}
   - component: {fileID: 3868329621204525359}
+  - component: {fileID: -7151052166127563934}
   m_Layer: 0
   m_Name: 16FinalSword
   m_TagString: Untagged
@@ -14596,6 +14597,19 @@ MonoBehaviour:
   SkillPrefab: {fileID: 1040889220841686, guid: 9ae5e242e15c7494a8bd65e18812ce62, type: 3}
   rotateSpeed: 220
   interval: 0.1
+--- !u!114 &-7151052166127563934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399412957844628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &1532815321820438
 GameObject:
   m_ObjectHideFlags: 0

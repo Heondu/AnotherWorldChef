@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 199990251589118252}
   - component: {fileID: 8193456808795976859}
   - component: {fileID: 1455143587446091641}
+  - component: {fileID: -4101088548070677824}
   m_Layer: 0
   m_Name: 20Knives
   m_TagString: Untagged
@@ -4918,7 +4919,9 @@ MonoBehaviour:
   skillDesc: "\uAC80\uC758 \uADF9\uC758\uB97C \uAE68\uB2EC\uC544\uBC84\uB838\uB2E4.
     \uC801\uB4E4\uC744 \uC12C\uBA78\uD55C\uB2E4."
   skillDamageMult: 1
-  coolTime: 2
+  coolTime: 10
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &1455143587446091641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4933,6 +4936,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onAwake: {fileID: 8300000, guid: 0f806d9f8ebdc0c4990726f6cdfae22e, type: 3}
   onDie: {fileID: 8300000, guid: 3aa8577aee4e3a9488007ee2d23caf86, type: 3}
+--- !u!114 &-4101088548070677824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168529248583268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &1222912878218796
 GameObject:
   m_ObjectHideFlags: 0

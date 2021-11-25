@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 54347867007870338}
   - component: {fileID: 135713622178651324}
   - component: {fileID: 3476999225640148485}
+  - component: {fileID: -7459144175849597161}
   m_Layer: 0
   m_Name: 01VoidArrow
   m_TagString: Untagged
@@ -5011,6 +5012,19 @@ MonoBehaviour:
     \uC804\uBC29\uC73C\uB85C \uBC1C\uC0AC\uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 3
+--- !u!114 &-7459144175849597161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519322442116508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &1984230739644340
 GameObject:
   m_ObjectHideFlags: 0

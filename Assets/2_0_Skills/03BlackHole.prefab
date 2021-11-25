@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1107778679111608989}
   - component: {fileID: 9110456063572200243}
   - component: {fileID: 5014589824138677}
+  - component: {fileID: 5413969114446376724}
   m_Layer: 0
   m_Name: 03BlackHole
   m_TagString: Untagged
@@ -104,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
+  repeatTime: 3
 --- !u!135 &5014589824138677
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -117,6 +120,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5413969114446376724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0

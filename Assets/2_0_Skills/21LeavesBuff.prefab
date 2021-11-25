@@ -14637,6 +14637,7 @@ GameObject:
   - component: {fileID: 5005406681345794120}
   - component: {fileID: 4653274460389027200}
   - component: {fileID: 8340317009570529362}
+  - component: {fileID: 2226832239681224514}
   m_Layer: 0
   m_Name: 21LeavesBuff
   m_TagString: Untagged
@@ -19528,7 +19529,9 @@ MonoBehaviour:
   skillDesc: "\uC8FC\uBCC0\uC758 \uB098\uBB47\uC78E\uB4E4\uC744 \uD3ED\uBC1C\uC2DC\uCF1C
     \uC801\uC744 \uACF5\uACA9\uD55C\uB2E4."
   skillDamageMult: 1
-  coolTime: 0
+  coolTime: 5
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &5005406681345794120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19568,6 +19571,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 1
+  repeatTime: 1
+  waitTime: 0
+--- !u!114 &2226832239681224514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207179939759570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 3
 --- !u!1 &1325694965833828
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,14 +14,32 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     public int index;
     public bool isShortcut;
     private Vector2 originPos;
+    private Transform parent;
+    private int siblingIndex;
+    private Transform inventoryPanel;
+    private bool isInit = false;
 
-    public void Init(int index)
+    private void OnEnable()
     {
+        if (!isInit) return;
+
+        canvasGroup.blocksRaycasts = true;
+        transform.SetParent(parent);
+        transform.SetSiblingIndex(siblingIndex);
+        rectTransform.anchoredPosition = originPos;
+    }
+
+    public void Init(int index, Transform inventoryPanel)
+    {
+        isInit = true;
+        this.inventoryPanel = inventoryPanel;
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
         originPos = rectTransform.anchoredPosition;
         this.index = index;
+        parent = transform.parent;
+        siblingIndex = transform.GetSiblingIndex();
     }
 
     public void AddSkill(Skill newSkill)
@@ -53,12 +71,15 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     {
         Debug.Log("OnBeginDrag");
         canvasGroup.blocksRaycasts = false;
+        transform.SetParent(inventoryPanel);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
         canvasGroup.blocksRaycasts = true;
+        transform.SetParent(parent);
+        transform.SetSiblingIndex(siblingIndex);
         rectTransform.anchoredPosition = originPos;
     }
 

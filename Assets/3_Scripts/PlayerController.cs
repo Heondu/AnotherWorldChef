@@ -9,11 +9,10 @@ public class PlayerController : MonoBehaviour, ILivingEntity
 {
     #region Variable & Property
     private Camera mainCamera;
-    [SerializeField] private float attackRange = 2;
     [SerializeField] private float rotateSpeed = 5;
     [SerializeField] private int maxCombo = 3;
+    [SerializeField] private bool canBeDamaged = true;
     private int currentCombo = 0;
-    private bool isComboInputOn = false;
     private bool isAttacking = false;
     private Vector3 mouseDir;
 
@@ -87,15 +86,7 @@ public class PlayerController : MonoBehaviour, ILivingEntity
 
     private void AttackCheck()
     {
-        if (state == PlayerState.Attack)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                isComboInputOn = true;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -105,16 +96,7 @@ public class PlayerController : MonoBehaviour, ILivingEntity
                 Vector3 start = new Vector3(transform.position.x, 1, transform.position.z);
                 Vector3 end =  (new Vector3(hit.point.x, 1, hit.point.z) - start).normalized;
                 mouseDir = end;
-                Debug.DrawLine(start, start + end * attackRange, Color.red, 1);
-
-                //if (Physics.Raycast(start, end, out hit, attackRange, 1 << LayerMask.NameToLayer("Enemy")))
-                //{
-                //    Enemy enemy = hit.collider.GetComponent<Enemy>();
-                //    if (enemy != null && Vector3.Distance(enemy.transform.position, transform.position) <= attackRange)
-                //    {
-                //        enemy.TakeDamage(status.Damage);
-                //    }
-                //}
+                Debug.DrawLine(start, start + end * 2, Color.red, 1);
             }
             state = PlayerState.Attack;
         }
@@ -163,6 +145,8 @@ public class PlayerController : MonoBehaviour, ILivingEntity
 
     public void TakeDamage(int damage, GameObject eventInstigator, Transform damageCauser)
     {
+        if (!canBeDamaged) return;
+
         Status.HP = Mathf.Max(0, Status.HP - damage);
         onHPValueChanged.Invoke();
         rigidbody.AddForce((transform.position - damageCauser.position).normalized * 100, ForceMode.Impulse);
@@ -184,14 +168,12 @@ public class PlayerController : MonoBehaviour, ILivingEntity
     private void AttackStart()
     {
         rigidbody.AddForce(mouseDir * 100 * currentCombo, ForceMode.Impulse);
-        //Instantiate(status.skills[0], transform.position + mouseDir * attackRange + Vector3.up, Quaternion.identity).Init(status.Damage, "Player");
     }
 
     private void ComboCheck()
     {
-        if (isComboInputOn)
+        if (Input.GetMouseButton(0))
         {
-            isComboInputOn = false;
             Attack();
         }
     }
@@ -206,7 +188,6 @@ public class PlayerController : MonoBehaviour, ILivingEntity
     private void AttackEnd()
     {
         isAttacking = false;
-        isComboInputOn = false;
         currentCombo = 0;
         state = PlayerState.Idle;
     }

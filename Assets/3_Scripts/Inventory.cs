@@ -47,15 +47,24 @@ public class Inventory : MonoBehaviour
 
     public bool Add(Skill skill)
     {
+        int nullIndex = -1;
         for (int i = 0; i < space; i++)
         {
-            if (skills[i] == null)
+            if (skills[i] == null && nullIndex == -1)
             {
-                skills[i] = skill;
-                if (onItemChanged != null)
-                    onItemChanged.Invoke();
+                nullIndex = i;
+            }
+            if (skills[i] == skill)
+            {
                 return true;
             }
+        }
+        if (nullIndex != -1)
+        {
+            skills[nullIndex] = skill;
+            if (onItemChanged != null)
+                onItemChanged.Invoke();
+            return true;
         }
 
         return false;

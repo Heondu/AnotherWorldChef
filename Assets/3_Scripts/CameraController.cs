@@ -4,12 +4,14 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     private CinemachineVirtualCamera cam;
+    private CinemachineTransposer camTransposer;
     
-    public void Init(Transform target)
+    public void Init(Transform target, Vector3 cameraOffset)
     {
         cam = GetComponent<CinemachineVirtualCamera>();
         cam.Follow = target;
         cam.LookAt = target;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = cameraOffset;
     }
 
     //[SerializeField]

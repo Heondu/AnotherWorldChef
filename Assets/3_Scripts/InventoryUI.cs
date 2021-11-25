@@ -21,23 +21,18 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < shortcutSlots.Length; i++)
         {
-            shortcutSlots[i].Init(i);
+            shortcutSlots[i].Init(i, transform);
         }
         for (int i = 0; i < skillSlots.Length; i++)
         {
-            skillSlots[i].Init(i);
+            skillSlots[i].Init(i, transform);
         }
         for (int i = 0; i < shortcutHUDSlot.Length; i++)
         {
-            shortcutHUDSlot[i].Init(i);
+            shortcutHUDSlot[i].Init(i, transform);
         }
 
         UpdateUI();
-    }
-
-    private void Update()
-    {
-        
     }
 
     private void UpdateUI()
@@ -82,14 +77,16 @@ public class InventoryUI : MonoBehaviour
     public void Open()
     {
         Time.timeScale = 0;
-        GameManager.Instance.IsStop = true;
+        if (GameManager.Instance != null)
+            GameManager.Instance.IsStop = true;
         gameObject.SetActive(true);
     }
 
     public void Close()
     {
         Time.timeScale = 1;
-        GameManager.Instance.IsStop = false;
+        if (GameManager.Instance != null)
+            GameManager.Instance.IsStop = false;
         gameObject.SetActive(false);
     }
 }

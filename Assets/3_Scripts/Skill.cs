@@ -9,8 +9,8 @@ public class Skill : MonoBehaviour
     public string skillDesc = "";
     public float skillDamageMult = 1;
     public float coolTime = 0;
-    private int damage;
-    private GameObject eventInstigator;
+    [HideInInspector] public int damage;
+    [HideInInspector] public GameObject eventInstigator;
 
     public void Init(int damage, GameObject eventInstigator)
     {

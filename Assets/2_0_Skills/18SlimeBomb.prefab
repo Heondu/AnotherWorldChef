@@ -19219,6 +19219,7 @@ GameObject:
   - component: {fileID: 9000489737637926316}
   - component: {fileID: 108359596997512241}
   - component: {fileID: 9133712719062047305}
+  - component: {fileID: 7473791080554329598}
   m_Layer: 0
   m_Name: 18SlimeBomb
   m_TagString: Untagged
@@ -19289,6 +19290,8 @@ MonoBehaviour:
     \uD48D\uC120\uC744 \uD130\uB728\uB9B0\uB2E4."
   skillDamageMult: 1
   coolTime: 10
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &9000489737637926316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19315,6 +19318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987d0119d94fd04c87d91f006aa3901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 2
+  repeatTime: 1
+  waitTime: 0.7
 --- !u!135 &9133712719062047305
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19328,3 +19334,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7473791080554329598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb3418c2d2a3c64bb54d28ebd687242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 5

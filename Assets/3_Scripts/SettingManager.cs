@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class SettingManager : MonoBehaviour
 {
+    [SerializeField] private GameObject settingPanel;
     [SerializeField] private Image seFill;
     [SerializeField] private Text seText;
     [SerializeField] private Image bgmFill;
@@ -15,24 +17,36 @@ public class SettingManager : MonoBehaviour
 
     private void OnEnable()
     {
-        originSeVolume = seVolume;
-        originBgmVolume = bgmVolume;
+        originSeVolume = SoundManager.soundManager.GetSEVolume();
+        originBgmVolume = SoundManager.soundManager.GetBGMVolume();
+        UpdateSEVolume(originSeVolume);
+        UpdateBGMVolume(originBgmVolume);
     }
 
     public void SetSEVolume(float value)
     {
         seVolume = Mathf.Clamp(seVolume + value, 0, 1);
-        SoundManager.soundManager.SetSEVolume(seVolume);
-        seFill.fillAmount = seVolume;
-        seText.text = $"{Mathf.RoundToInt(seVolume * 100)} / 100";
+        UpdateSEVolume(seVolume);
     }
 
     public void SetBGMVolume(float value)
     {
         bgmVolume = Mathf.Clamp(bgmVolume + value, 0, 1);
-        SoundManager.soundManager.SetBGMVolume(bgmVolume);
-        bgmFill.fillAmount = bgmVolume;
-        bgmText.text = $"{Mathf.RoundToInt(bgmVolume * 100)} / 100";
+        UpdateBGMVolume(bgmVolume);
+    }
+
+    private void UpdateSEVolume(float value)
+    {
+        SoundManager.soundManager.SetSEVolume(value);
+        seFill.fillAmount = value;
+        seText.text = $"{Mathf.RoundToInt(value * 100)} / 100";
+    }
+
+    private void UpdateBGMVolume(float value)
+    {
+        SoundManager.soundManager.SetBGMVolume(value);
+        bgmFill.fillAmount = value;
+        bgmText.text = $"{Mathf.RoundToInt(value * 100)} / 100";
     }
 
     public void Quit()
@@ -47,14 +61,16 @@ public class SettingManager : MonoBehaviour
     public void Open()
     {
         Time.timeScale = 0;
-        GameManager.Instance.IsStop = true;
+        if (GameManager.Instance != null)
+            GameManager.Instance.IsStop = true;
         gameObject.SetActive(true);
     }
 
     private void Close()
     {
         Time.timeScale = 1;
-        GameManager.Instance.IsStop = false;
+        if (GameManager.Instance != null)
+            GameManager.Instance.IsStop = false;
         gameObject.SetActive(false);
     }
 
@@ -68,13 +84,9 @@ public class SettingManager : MonoBehaviour
         if (gameObject.activeSelf == false) return;
 
         seVolume = originSeVolume;
-        SoundManager.soundManager.SetSEVolume(originSeVolume);
-        seFill.fillAmount = originSeVolume;
-        seText.text = $"{Mathf.RoundToInt(originSeVolume * 100)} / 100";
         bgmVolume = originBgmVolume;
-        SoundManager.soundManager.SetBGMVolume(originBgmVolume);
-        bgmFill.fillAmount = originBgmVolume;
-        bgmText.text = $"{Mathf.RoundToInt(originBgmVolume * 100)} / 100";
+        UpdateSEVolume(seVolume);
+        UpdateBGMVolume(bgmVolume);
 
         Close();
     }

@@ -9,8 +9,10 @@ public class StartPoint : MonoBehaviour
     {
         if (GameManager.Instance == null)
         {
-            Instantiate(gameManager, Vector3.zero, Quaternion.identity).Init(transform, cameraOffset);
+            Instantiate(gameManager, Vector3.zero, Quaternion.identity);
         }
+
+        GameManager.Instance.Init(transform, cameraOffset);
 
         gameObject.SetActive(false);
     }

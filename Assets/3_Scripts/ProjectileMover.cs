@@ -65,6 +65,41 @@ public class ProjectileMover : MonoBehaviour
         }
 	}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(skill.eventInstigator.tag)) return;
+        if (other.CompareTag("Skill")) return;
+
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        speed = 0;
+
+        Vector3 normal = (other.transform.position - transform.position).normalized;
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, normal);
+        Vector3 pos = transform.position + normal * hitOffset;
+
+        if (hit != null)
+        {
+            skill.Attack(other.gameObject);
+
+            var hitInstance = Instantiate(hit, pos, rot);
+            if (UseFirePointRotation) { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
+            else if (rotationOffset != Vector3.zero) { hitInstance.transform.rotation = Quaternion.Euler(rotationOffset); }
+            else { hitInstance.transform.LookAt(transform.position + normal); }
+
+            var hitPs = hitInstance.GetComponent<ParticleSystem>();
+            if (hitPs != null)
+            {
+                Destroy(hitInstance, hitPs.main.duration);
+            }
+            else
+            {
+                var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+                Destroy(hitInstance, hitPsParts.main.duration);
+            }
+        }
+        Destroy(gameObject);
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         rb.constraints = RigidbodyConstraints.FreezeAll;

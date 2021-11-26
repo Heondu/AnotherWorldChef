@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5413969114446376724}
   m_Layer: 0
   m_Name: 03BlackHole
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +93,9 @@ MonoBehaviour:
     \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4."
   skillDamageMult: 1
   coolTime: 10
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &9110456063572200243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackType: 0
   repeatTime: 3
+  waitTime: 0
 --- !u!135 &5014589824138677
 SphereCollider:
   m_ObjectHideFlags: 0

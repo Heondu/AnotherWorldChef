@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image icon;
+    [SerializeField] private InventoryTooltip tooltip;
     public Skill skill;
 
     private RectTransform rectTransform;
@@ -27,6 +28,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         transform.SetParent(parent);
         transform.SetSiblingIndex(siblingIndex);
         rectTransform.anchoredPosition = originPos;
+        tooltip.gameObject.SetActive(false);
     }
 
     public void Init(int index, Transform inventoryPanel)
@@ -64,19 +66,21 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
+        if (skill == null) return;
+
+        tooltip.gameObject.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        if (skill == null) return;
+
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(inventoryPanel);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
         canvasGroup.blocksRaycasts = true;
         transform.SetParent(parent);
         transform.SetSiblingIndex(siblingIndex);
@@ -85,16 +89,32 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        if (skill == null) return;
+
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log($"OnDrop");
         if (eventData.pointerDrag != null)
         {
             Inventory.Instance.ChangeSlot(eventData.pointerDrag.GetComponent<InventorySlot>(), this);
         }
+        tooltip.gameObject.SetActive(false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (skill == null) return;
+
+        tooltip.Init(skill, inventoryPanel);
+        tooltip.gameObject.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (skill == null) return;
+
+        tooltip.gameObject.SetActive(false);
     }
 }

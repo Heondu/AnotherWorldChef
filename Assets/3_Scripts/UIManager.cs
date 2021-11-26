@@ -4,8 +4,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private SettingManager settingPanel;
     [SerializeField] private InventoryUI inventoryPanel;
+    [SerializeField] private GameObject restartPanel;
 
-    private void Start()
+    public void Init()
     {
         inventoryPanel.Init();
     }
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (GameManager.Instance.IsDead == false && Input.GetKeyDown(KeyCode.I))
         {
             settingPanel.Cancel();
             if (inventoryPanel.gameObject.activeSelf)
@@ -43,6 +44,14 @@ public class UIManager : MonoBehaviour
                 inventoryPanel.Open();
                 GameManager.Instance.IsStop = true;
             }
+        }
+        if (GameManager.Instance.IsDead)
+        {
+            restartPanel.SetActive(true);
+        }
+        else
+        {
+            restartPanel.SetActive(false);
         }
     }
 }

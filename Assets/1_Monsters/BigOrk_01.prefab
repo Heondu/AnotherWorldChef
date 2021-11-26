@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 546748086597094463}
   - component: {fileID: -2057675453634869119}
   - component: {fileID: -6841925648285657945}
+  - component: {fileID: -5774484847056309570}
   m_Layer: 7
   m_Name: BigOrk_01
   m_TagString: Enemy
@@ -942,9 +943,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc6a98daa4d9545bc45e55e1af826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 30
-  Damage: 5
+  MaxHP: 50
+  Damage: 10
   skills:
+  - {fileID: -8902227373334276965, guid: 5fc5dfabda724bd468abb026f9338663, type: 3}
   - {fileID: -176288651157990165, guid: 306f8cadf52478545b761081f232283f, type: 3}
 --- !u!195 &9001540914323863901
 NavMeshAgent:
@@ -983,7 +985,7 @@ MonoBehaviour:
   moveRange: 5
   detectRange: 5
   chaseRange: 10
-  attackRange: 2
+  hitNotifyRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
@@ -1020,6 +1022,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &-5774484847056309570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293356793197548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1315224913767900
 GameObject:
   m_ObjectHideFlags: 0

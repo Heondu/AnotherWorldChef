@@ -4808,7 +4808,7 @@ GameObject:
   - component: {fileID: 6083574148067424293}
   m_Layer: 0
   m_Name: 07GroundRay
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4876,6 +4876,9 @@ MonoBehaviour:
     \uC555\uCD95\uD574\uC11C \uB9CC\uB4E4\uC5C8\uB2E4."
   skillDamageMult: 1
   coolTime: 5
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &2619079902667749618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4890,6 +4893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackType: 0
   repeatTime: 1
+  waitTime: 1
 --- !u!135 &6651989185679140487
 SphereCollider:
   m_ObjectHideFlags: 0

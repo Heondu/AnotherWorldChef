@@ -9817,7 +9817,7 @@ GameObject:
   - component: {fileID: -7179619416650590667}
   m_Layer: 0
   m_Name: 15IceArrows
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9892,12 +9892,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53fa00b460c8fb49a35ad408abfded1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: "\uD070\uD3C9\uD0C0"
+  skillName: "\uC5BC\uC74C \uBE44"
   skillIcon: {fileID: 21300000, guid: 629790e6ac014c149b27b0127330bfbf, type: 3}
   skillType: 2
-  skillDesc: 
-  skillDamageMult: 1
+  skillDesc: "\uD558\uB298\uC5D0\uC11C \uC5BC\uC74C \uBE44\uAC00 \uB5A8\uC5B4\uC9C4\uB2E4."
+  skillDamageMult: 2
   coolTime: 5
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!135 &3931302162315249329
 SphereCollider:
   m_ObjectHideFlags: 0

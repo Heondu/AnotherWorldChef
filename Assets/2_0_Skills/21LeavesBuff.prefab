@@ -14640,7 +14640,7 @@ GameObject:
   - component: {fileID: 2226832239681224514}
   m_Layer: 0
   m_Name: 21LeavesBuff
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19530,6 +19530,7 @@ MonoBehaviour:
     \uC801\uC744 \uACF5\uACA9\uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 5
+  attackRange: 8
   damage: 0
   eventInstigator: {fileID: 0}
 --- !u!114 &5005406681345794120

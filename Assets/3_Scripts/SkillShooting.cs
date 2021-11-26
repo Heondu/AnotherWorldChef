@@ -3,79 +3,21 @@ using UnityEngine;
 
 public class SkillShooting : MonoBehaviour
 {
-    public Skill[] Skills;
-
-    private PlayerController playerController;
-
     public Dictionary<Skill, SkillTimer> skillTimers = new Dictionary<Skill, SkillTimer>();
 
-    private void Start()
+    public bool SkillShot(Skill skill, ILivingEntity entity, int damage)
     {
-        playerController = GetComponent<PlayerController>();
-        Inventory.Instance.onItemChanged += UpdateShortcut;
-        for (int i = 0; i < 4; i++)
-        {
-            Inventory.Instance.shortcuts[i] = Skills[i + 1];
-        }
-        Inventory.Instance.onItemChanged.Invoke();
-    }
+        if (skill == null) return false;
 
-    private void Update()
-    {
-        if (GameManager.Instance.IsStop) return;
+        if (!CheckForSkillCooltime(skill)) return false;
 
-        ObserveSkillShot();
-    }
-
-    private void UpdateShortcut()
-    {
-        for (int i = 0; i < Inventory.Instance.shortcuts.Length; i++)
-        {
-            Skills[i + 1] = Inventory.Instance.shortcuts[i];
-        }
-    }
-
-    private void ObserveSkillShot()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            SkillShot(Skills[0]);
-        }
-        if (Input.GetKeyDown("q"))
-        {
-            SkillShot(Skills[1]);
-        }
-        if (Input.GetKeyDown("w"))
-        {
-            SkillShot(Skills[2]);
-        }
-        if (Input.GetKeyDown("e"))
-        {
-            SkillShot(Skills[3]);
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            SkillShot(Skills[4]);
-        }
-    }
-
-    private void SkillShot(Skill skill)
-    {
-        if (skillTimers.ContainsKey(skill) == false)
-        {
-            skillTimers.Add(skill, new SkillTimer(skill, Time.time));
-        }
-        else if (skillTimers[skill].CanAttack() == false)
-        {
-            return;
-        }
         skillTimers[skill].SetLastAttackTime();
 
         Skill clone = null;
 
         if(skill.skillType == SkillType.Cursor)
         {
-            clone = Instantiate(skill, playerController.GetMousePos(), Quaternion.identity);
+            clone = Instantiate(skill, entity.GetAttackPosition(), Quaternion.identity);
         }
         else if(skill.skillType == SkillType.Explode)
         {
@@ -83,11 +25,13 @@ public class SkillShooting : MonoBehaviour
         }
         else if(skill.skillType == SkillType.Projectile)
         {
-            clone = Instantiate(skill, transform.position + playerController.GetMouseDir() + Vector3.up, Quaternion.LookRotation(playerController.GetMouseDir()));
+            clone = Instantiate(skill, transform.position + entity.GetAttackDirection() + Vector3.up / 2, Quaternion.LookRotation(entity.GetAttackDirection()));
         }
 
-        clone.Init(playerController.Status.Damage, gameObject);
+        clone.Init(damage, gameObject);
         AutoDestroy(clone.gameObject);
+
+        return true;
     }
 
     private void AutoDestroy(GameObject hitInstance)
@@ -97,5 +41,19 @@ public class SkillShooting : MonoBehaviour
         {
             Destroy(hitInstance, hitPs.main.duration);
         }
+    }
+
+    public bool CheckForSkillCooltime(Skill skill)
+    {
+        if (skillTimers.ContainsKey(skill) == false)
+        {
+            skillTimers.Add(skill, new SkillTimer(skill, Time.time));
+            return true;
+        }
+        else if (skillTimers[skill].CanAttack() == false)
+        {
+            return false;
+        }
+        return true;
     }
 }

@@ -15,12 +15,11 @@ GameObject:
   - component: {fileID: 108320471180231846}
   - component: {fileID: 54026867493614958}
   - component: {fileID: 135840973497244662}
-  - component: {fileID: -2559335388517819685}
   - component: {fileID: 7232389563420085487}
   - component: {fileID: 4520972567055012188}
   m_Layer: 0
   m_Name: 04FrostArrow
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4988,29 +4987,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018882707796302}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2559335388517819685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018882707796302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53fa00b460c8fb49a35ad408abfded1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: "\uB0C9\uAE30 \uD654\uC0B4"
-  skillIcon: {fileID: 0}
-  skillType: 0
-  skillDesc: "\uC791\uC740 \uB0C9\uAE30\uC758 \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD55C\uB2E4."
-  skillDamageMult: 1
-  coolTime: 1
 --- !u!114 &7232389563420085487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5030,6 +5011,9 @@ MonoBehaviour:
     \uBC1C\uC0AC\uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 3
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &4520972567055012188
 MonoBehaviour:
   m_ObjectHideFlags: 0

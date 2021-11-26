@@ -1683,12 +1683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills:
-  - {fileID: -626973195876438773, guid: 3cefa829969829542bf182f16e268213, type: 3}
-  - {fileID: 8332227187571605971, guid: c104d65324a2c614bbe6b0f55c0c4281, type: 3}
-  - {fileID: 8193456808795976859, guid: 76d29242e44bd1d4481337c8f53681ac, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &9024082783294668317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1703,7 +1697,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   Damage: 10
-  skills: []
+  skills:
+  - {fileID: -6664851531667389979, guid: c7e9268bc510d734e980e1e5b5898911, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &9024082783294668316
 MonoBehaviour:
   m_ObjectHideFlags: 0

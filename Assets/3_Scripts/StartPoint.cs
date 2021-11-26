@@ -3,10 +3,14 @@ using UnityEngine;
 public class StartPoint : MonoBehaviour
 {
     [SerializeField] private Vector3 cameraOffset = new Vector3(16, 32, 16);
+    [SerializeField] private GameManager gameManager;
 
     private void Start()
     {
-        GameManager.Instance.Init(transform, cameraOffset);
+        if (GameManager.Instance == null)
+        {
+            Instantiate(gameManager, Vector3.zero, Quaternion.identity).Init(transform, cameraOffset);
+        }
 
         gameObject.SetActive(false);
     }

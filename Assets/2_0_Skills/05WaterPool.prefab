@@ -14597,7 +14597,7 @@ GameObject:
   - component: {fileID: -8382179422646874384}
   m_Layer: 0
   m_Name: 05WaterPool
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14634,8 +14634,11 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: 52d90cb2cccd56240baf854f09c97862, type: 3}
   skillType: 2
   skillDesc: "\uC774 \uC628\uCC9C\uC740 \uC544\uC8FC \uD56B\uD558\uB2E4!"
-  skillDamageMult: 3
+  skillDamageMult: 1
   coolTime: 10
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &7140534108495501696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14650,6 +14653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackType: 1
   repeatTime: 1
+  waitTime: 0
 --- !u!135 &4489676778716644092
 SphereCollider:
   m_ObjectHideFlags: 0

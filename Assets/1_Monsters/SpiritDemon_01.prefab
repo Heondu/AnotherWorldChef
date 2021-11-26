@@ -2819,6 +2819,7 @@ GameObject:
   - component: {fileID: -2828566382104278786}
   - component: {fileID: -6172048954803569245}
   - component: {fileID: -9143647659476160143}
+  - component: {fileID: 1353004242651384056}
   m_Layer: 7
   m_Name: SpiritDemon_01
   m_TagString: Enemy
@@ -2882,10 +2883,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc6a98daa4d9545bc45e55e1af826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 30
+  MaxHP: 150
   Damage: 5
   skills:
-  - {fileID: -176288651157990165, guid: 306f8cadf52478545b761081f232283f, type: 3}
+  - {fileID: 2027990732017185876, guid: ea471fb16b008d44886490483edd9cee, type: 3}
+  - {fileID: -8444828384720659849, guid: 3bbebb6123d7fdd4fa718a9ea192c837, type: 3}
+  - {fileID: 436321878958183068, guid: 40eeb2fa0cb8416bbf3c301b58939ae1, type: 3}
 --- !u!195 &3672468844941415067
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2923,7 +2926,7 @@ MonoBehaviour:
   moveRange: 5
   detectRange: 5
   chaseRange: 10
-  attackRange: 2
+  hitNotifyRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
@@ -2960,3 +2963,15 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &1353004242651384056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997296248483302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

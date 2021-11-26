@@ -14,18 +14,18 @@ public class PlayerController : MonoBehaviour, ILivingEntity
     [SerializeField] private bool canBeDamaged = true;
     private int currentCombo = 0;
     private bool isAttacking = false;
-    private Vector3 mouseDir;
 
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private PlayerState state;
     public Status Status { get; private set; }
     private new Rigidbody rigidbody;
+    private SkillShooting skillShooting;
 
     [HideInInspector] public UnityEvent onHPValueChanged = new UnityEvent(); 
     #endregion
 
-    public void Init(Camera cam)
+    public void Init(Camera cam, int hp)
     {
         mainCamera = cam;
         animator = GetComponentInChildren<Animator>();
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour, ILivingEntity
         Status = GetComponent<Status>();
         state = PlayerState.Idle;
         rigidbody = GetComponent<Rigidbody>();
+        skillShooting = GetComponent<SkillShooting>();
+        Status.HP = hp;
     }
 
     private void Update()
@@ -49,20 +51,34 @@ public class PlayerController : MonoBehaviour, ILivingEntity
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Enemy")))
         {
             return hit.point;
+        }
+        else if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Vector3 position = hit.point;
+            position.y = transform.position.y;
+            return position;
         }
         return -Vector3.one;
     }
 
-    public Vector3 GetMouseDir()
+    public Vector3 GetMouseDir(bool freezeY)
     {
         Vector3 mousePos = GetMousePos();
-        Vector3 start = new Vector3(transform.position.x, 1, transform.position.z);
-        Vector3 end = (new Vector3(mousePos.x, 1, mousePos.z) - start).normalized;
-        mouseDir = end;
-        return mouseDir;
+
+        if (freezeY)
+        {
+            Vector3 from = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 to = new Vector3(mousePos.x, 0, mousePos.z);
+            return (to - from).normalized;
+
+        }
+        else
+        {
+            return (mousePos - transform.position).normalized;
+        }
     }
 
     private void Move()
@@ -86,19 +102,42 @@ public class PlayerController : MonoBehaviour, ILivingEntity
 
     private void AttackCheck()
     {
+        if (GameManager.Instance.IsStop) return;
+
         if (Input.GetMouseButton(0))
         {
+            if (skillShooting.SkillShot(Status.skills[0], GetComponent<ILivingEntity>(), Status.Damage))
+                state = PlayerState.Attack;
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100f))
             {
                 Vector3 start = new Vector3(transform.position.x, 1, transform.position.z);
-                Vector3 end =  (new Vector3(hit.point.x, 1, hit.point.z) - start).normalized;
-                mouseDir = end;
+                Vector3 end = (new Vector3(hit.point.x, 1, hit.point.z) - start).normalized;
                 Debug.DrawLine(start, start + end * 2, Color.red, 1);
             }
-            state = PlayerState.Attack;
+        }
+        if (Input.GetKeyDown("q"))
+        {
+            if (skillShooting.SkillShot(Status.skills[1], GetComponent<ILivingEntity>(), Status.Damage))
+                state = PlayerState.Attack;
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            if (skillShooting.SkillShot(Status.skills[2], GetComponent<ILivingEntity>(), Status.Damage))
+                state = PlayerState.Attack;
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            if (skillShooting.SkillShot(Status.skills[3], GetComponent<ILivingEntity>(), Status.Damage))
+                state = PlayerState.Attack;
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            if (skillShooting.SkillShot(Status.skills[4], GetComponent<ILivingEntity>(), Status.Damage))
+                state = PlayerState.Attack;
         }
     }
 
@@ -135,10 +174,11 @@ public class PlayerController : MonoBehaviour, ILivingEntity
                 }
                 break;
             case PlayerState.Attack:
-                if (isAttacking) break;
+                if (isAttacking) return;
                 isAttacking = true;
                 navMeshAgent.ResetPath();
                 Attack();
+                state = PlayerState.Idle;
                 break;
         }
     }
@@ -150,13 +190,21 @@ public class PlayerController : MonoBehaviour, ILivingEntity
         Status.HP = Mathf.Max(0, Status.HP - damage);
         onHPValueChanged.Invoke();
         rigidbody.AddForce((transform.position - damageCauser.position).normalized * 100, ForceMode.Impulse);
-        Debug.Log($"{name} : {Status.HP}");
+        if (state == PlayerState.Idle)
+        {
+            AttackEnd();
+            animator.Play("Hit");
+        }
+        navMeshAgent.ResetPath();
+        state = PlayerState.Idle;
         if (Status.HP == 0)
         {
             state = PlayerState.Death;
             navMeshAgent.enabled = false;
             GetComponent<Collider>().enabled = false;
-            animator.SetTrigger("death");
+            animator.Play("Death");
+            GameManager.Instance.IsDead = true;
+            GameManager.Instance.IsStop = true;
         }
     }
 
@@ -167,7 +215,7 @@ public class PlayerController : MonoBehaviour, ILivingEntity
 
     private void AttackStart()
     {
-        rigidbody.AddForce(mouseDir * 100 * currentCombo, ForceMode.Impulse);
+        rigidbody.AddForce(GetMouseDir(true) * 100 * currentCombo, ForceMode.Impulse);
     }
 
     private void ComboCheck()
@@ -182,7 +230,7 @@ public class PlayerController : MonoBehaviour, ILivingEntity
     {
         currentCombo = Mathf.Min(maxCombo, currentCombo + 1);
         animator.Play("Attack" + currentCombo);
-        StartCoroutine("LookAt", mouseDir);
+        StartCoroutine("LookAt", GetMouseDir(true));
     }
 
     private void AttackEnd()
@@ -190,5 +238,15 @@ public class PlayerController : MonoBehaviour, ILivingEntity
         isAttacking = false;
         currentCombo = 0;
         state = PlayerState.Idle;
+    }
+
+    public Vector3 GetAttackPosition()
+    {
+        return GetMousePos();
+    }
+
+    public Vector3 GetAttackDirection()
+    {
+        return GetMouseDir(false);
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,11 +22,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private Camera brainCamera;
     [SerializeField] private CameraController virtualCamera;
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private UIManager canvas;
     [SerializeField] private GameObject eventSystem;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private DirectionMark directionMark;
+    [SerializeField] private bool showDirectionMark;
+    [SerializeField] private bool HPRecoveryAtSceneChange;
 
-    public bool IsStop;
+    [HideInInspector] public bool IsStop = false;
+    [HideInInspector] public bool IsDead = false;
+    [HideInInspector] public bool IsFirstPlay = true;
     private int currentSceneIndex = 0;
+    private int PlayerHP = 100;
 
     private void Awake()
     {
@@ -33,6 +41,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        IsStop = false;
+        IsDead = false;
+        IsFirstPlay = true;
+        PlayerHP = player.GetComponent<Status>().MaxHP;
     }
 
     private void Update()
@@ -50,6 +63,14 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0)) LoadNextScene(9);
         else if (Input.GetKeyDown(KeyCode.Minus)) LoadNextScene(10);
 #endif
+
+        if (IsDead && Input.GetKeyDown(KeyCode.R))
+        {
+            LoadingSceneManager.RestartScene();
+            IsDead = false;
+            IsStop = false;
+            IsFirstPlay = false;
+        }
     }
 
     public void LoadNextScene(int sceneIndex)
@@ -74,15 +95,24 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        if (!HPRecoveryAtSceneChange)
+            PlayerHP = FindObjectOfType<PlayerController>().GetComponent<Status>().HP;
+
         LoadNextScene(++currentSceneIndex);
     }
 
     public void Init(Transform startPoint, Vector3 cameraOffset)
     {
         PlayerController playerController = Instantiate(player, startPoint.position, startPoint.rotation);
-        playerController.Init(Instantiate(brainCamera));
+        playerController.Init(Instantiate(brainCamera), PlayerHP);
         Instantiate(virtualCamera).Init(playerController.transform, cameraOffset);
-        Instantiate(canvas);
+        Instantiate(inventory).Init();
+        Instantiate(canvas).Init();
         Instantiate(eventSystem);
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex - 2;
+        if (showDirectionMark)
+        {
+            Instantiate(directionMark);
+        }
     }
 }

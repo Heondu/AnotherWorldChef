@@ -14557,7 +14557,7 @@ GameObject:
   - component: {fileID: 3961054040502535515}
   m_Layer: 0
   m_Name: 00FireStrike
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19547,7 +19547,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449260960837898}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
@@ -19571,6 +19571,9 @@ MonoBehaviour:
     \uBC1C\uC0AC\uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 0.5
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &3384385456033994626
 MonoBehaviour:
   m_ObjectHideFlags: 0

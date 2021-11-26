@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -37,7 +36,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Init()
     {
         for (int i = 0; i < space; i++)
         {

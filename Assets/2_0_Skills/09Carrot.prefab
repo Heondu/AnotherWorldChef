@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3608504705508531302}
   m_Layer: 0
   m_Name: 09Carrot
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4916,7 +4916,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049234075114562}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 1}
@@ -4976,6 +4976,9 @@ MonoBehaviour:
     \uC88B\uC9C0 \uC54A\uB2E4."
   skillDamageMult: 1
   coolTime: 0.5
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &3608504705508531302
 MonoBehaviour:
   m_ObjectHideFlags: 0

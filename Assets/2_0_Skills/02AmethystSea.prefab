@@ -9808,7 +9808,7 @@ GameObject:
   - component: {fileID: 3293578302810751314}
   m_Layer: 0
   m_Name: 02AmethystSea
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9848,6 +9848,9 @@ MonoBehaviour:
     \uC7A0\uAE30\uAC8C \uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 10
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &8872908201856684074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9862,6 +9865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackType: 0
   repeatTime: 3
+  waitTime: 0
 --- !u!135 &7113466402649344594
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -8236879916852653615}
   m_Layer: 0
   m_Name: 06LeafShot
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4987,7 +4987,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698648575761504}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
@@ -5011,6 +5011,9 @@ MonoBehaviour:
     \uB420 \uC218 \uC788\uB2E4!"
   skillDamageMult: 1
   coolTime: 1
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &-8236879916852653615
 MonoBehaviour:
   m_ObjectHideFlags: 0

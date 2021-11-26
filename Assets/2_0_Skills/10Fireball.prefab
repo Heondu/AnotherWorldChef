@@ -24328,7 +24328,7 @@ GameObject:
   - component: {fileID: 6939197600583359679}
   m_Layer: 0
   m_Name: 10Fireball
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24372,7 +24372,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846563170864394}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -24414,8 +24414,11 @@ MonoBehaviour:
   skillType: 0
   skillDesc: "\uD654\uC5FC\uC73C\uB85C \uC774\uB8E8\uC5B4\uC9C4 \uCEE4\uB2E4\uB780
     \uAD6C\uB97C \uC3D8\uC544\uB0B8\uB2E4."
-  skillDamageMult: 1
-  coolTime: 5
+  skillDamageMult: 2
+  coolTime: 3
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &6939197600583359679
 MonoBehaviour:
   m_ObjectHideFlags: 0

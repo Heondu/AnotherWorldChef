@@ -2419,6 +2419,7 @@ GameObject:
   - component: {fileID: -3263608557221414188}
   - component: {fileID: -4447778788376588078}
   - component: {fileID: 2293367193365089660}
+  - component: {fileID: -5703459194543969343}
   m_Layer: 7
   m_Name: FortGolem_01
   m_TagString: Enemy
@@ -2483,10 +2484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc6a98daa4d9545bc45e55e1af826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 30
+  MaxHP: 80
   Damage: 5
   skills:
-  - {fileID: -176288651157990165, guid: 306f8cadf52478545b761081f232283f, type: 3}
+  - {fileID: 7407543727557658331, guid: cd1ade89311044128dce6a49c7c25078, type: 3}
+  - {fileID: -6381234326080948062, guid: a663614dc6417744dacf182c54788e9e, type: 3}
 --- !u!195 &-7859725670086933031
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2524,7 +2526,7 @@ MonoBehaviour:
   moveRange: 5
   detectRange: 5
   chaseRange: 10
-  attackRange: 2
+  hitNotifyRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
@@ -2561,6 +2563,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &-5703459194543969343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691206179217438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1697616495367878
 GameObject:
   m_ObjectHideFlags: 0

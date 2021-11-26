@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -11,8 +10,11 @@ public class InventoryUI : MonoBehaviour
     private InventorySlot[] skillSlots;
     private InventorySlot[] shortcutHUDSlot;
 
+    private Status playerStatus;
+
     public void Init()
     {
+        Inventory.Instance.onItemChanged = null;
         Inventory.Instance.onItemChanged += UpdateUI;
 
         shortcutSlots = shortcutParent.GetComponentsInChildren<InventorySlot>();
@@ -33,6 +35,21 @@ public class InventoryUI : MonoBehaviour
         }
 
         UpdateUI();
+
+        playerStatus = FindObjectOfType<PlayerController>().GetComponent<Status>();
+        Inventory.Instance.onItemChanged += UpdateShortcut;
+        for (int i = 0; i < 4; i++)
+        {
+            if (GameManager.Instance.IsFirstPlay)
+            {
+                Inventory.Instance.shortcuts[i] = playerStatus.skills[i + 1];
+            }
+            else
+            {
+                playerStatus.skills[i + 1] = Inventory.Instance.shortcuts[i];
+            }
+        }
+        Inventory.Instance.onItemChanged.Invoke();
     }
 
     private void UpdateUI()
@@ -71,6 +88,14 @@ public class InventoryUI : MonoBehaviour
             {
                 shortcutHUDSlot[i].ClearSlot();
             }
+        }
+    }
+
+    private void UpdateShortcut()
+    {
+        for (int i = 0; i < Inventory.Instance.shortcuts.Length; i++)
+        {
+            playerStatus.skills[i + 1] = Inventory.Instance.shortcuts[i];
         }
     }
 

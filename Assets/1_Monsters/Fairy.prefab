@@ -608,6 +608,7 @@ GameObject:
   - component: {fileID: 8170616072968291223}
   - component: {fileID: 4365853742781860184}
   - component: {fileID: 7823122389256937096}
+  - component: {fileID: 3148451867530666934}
   m_Layer: 7
   m_Name: Fairy
   m_TagString: Enemy
@@ -686,7 +687,7 @@ MonoBehaviour:
   MaxHP: 30
   Damage: 5
   skills:
-  - {fileID: -176288651157990165, guid: 306f8cadf52478545b761081f232283f, type: 3}
+  - {fileID: -626973195876438773, guid: 3cefa829969829542bf182f16e268213, type: 3}
 --- !u!195 &-3957576203107886155
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -725,6 +726,7 @@ MonoBehaviour:
   detectRange: 5
   chaseRange: 10
   attackRange: 2
+  hitNotifyRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
@@ -761,6 +763,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &3148451867530666934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130955691468970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136545468639114
 GameObject:
   m_ObjectHideFlags: 0

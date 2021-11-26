@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7233918252830832125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7233918252830832127}
+  - component: {fileID: 7233918252830832124}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7233918252830832127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233918252830832125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7233918252830832124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233918252830832125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346e48f5aedaff346a65c0570e5b5613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 9024082783294668316, guid: 4bd83cf00da3f784f8e9678cdcbd9431, type: 3}
+  brainCamera: {fileID: 6445141935877045365, guid: 5087584cba1eed14098c9d9652e9e3d6, type: 3}
+  virtualCamera: {fileID: 4465332007845390041, guid: 63f316db52ae1484bae79b335272f5d7, type: 3}
+  canvas: {fileID: 8533889144584768728, guid: e758e6f5049542d4ca36c634d84e6e05, type: 3}
+  eventSystem: {fileID: 2853492605506562937, guid: c2033020029e3994cbb5886c86da6dfe, type: 3}
+  inventory: {fileID: 293275377366387237, guid: a1ae57c135e4fba42962f8f62b2a4559, type: 3}
+  directionMark: {fileID: 1072985798989209397, guid: f1750f4be8de39545a240e95055a9965, type: 3}
+  showDirectionMark: 1
+  HPRecoveryAtSceneChange: 1
+  IsStop: 0
+  IsDead: 0
+  IsFirstPlay: 1

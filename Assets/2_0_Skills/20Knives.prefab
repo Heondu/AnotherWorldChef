@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4101088548070677824}
   m_Layer: 0
   m_Name: 20Knives
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4918,8 +4918,9 @@ MonoBehaviour:
   skillType: 2
   skillDesc: "\uAC80\uC758 \uADF9\uC758\uB97C \uAE68\uB2EC\uC544\uBC84\uB838\uB2E4.
     \uC801\uB4E4\uC744 \uC12C\uBA78\uD55C\uB2E4."
-  skillDamageMult: 1
+  skillDamageMult: 2
   coolTime: 10
+  attackRange: 8
   damage: 0
   eventInstigator: {fileID: 0}
 --- !u!114 &1455143587446091641

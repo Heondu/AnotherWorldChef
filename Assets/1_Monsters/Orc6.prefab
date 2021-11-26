@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: -7218261606316804973}
   - component: {fileID: 8027254451439276922}
   - component: {fileID: -807782142205483106}
+  - component: {fileID: 6796297136655926941}
   m_Layer: 7
   m_Name: Orc6
   m_TagString: Enemy
@@ -554,6 +555,7 @@ MonoBehaviour:
   detectRange: 5
   chaseRange: 10
   attackRange: 2
+  hitNotifyRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
@@ -590,6 +592,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &6796297136655926941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &114958
 GameObject:
   m_ObjectHideFlags: 0

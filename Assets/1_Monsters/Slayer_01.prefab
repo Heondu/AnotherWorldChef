@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: -8884676238836610109}
   - component: {fileID: 2177239026018621806}
   - component: {fileID: 3971287551356747160}
+  - component: {fileID: 8701315936305920183}
   m_Layer: 7
   m_Name: Slayer_01
   m_TagString: Enemy
@@ -273,9 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc6a98daa4d9545bc45e55e1af826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 30
+  MaxHP: 50
   Damage: 5
   skills:
+  - {fileID: 7029518968054801843, guid: 9ae5e242e15c7494a8bd65e18812ce62, type: 3}
   - {fileID: -176288651157990165, guid: 306f8cadf52478545b761081f232283f, type: 3}
 --- !u!195 &-4277809489371947754
 NavMeshAgent:
@@ -314,7 +316,7 @@ MonoBehaviour:
   moveRange: 5
   detectRange: 5
   chaseRange: 10
-  attackRange: 2
+  hitNotifyRange: 5
   patrolSpeed: 2
   chaseSpeed: 3
   rotateSpeed: 5
@@ -351,6 +353,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &8701315936305920183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033247876357254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0015164b45b01e24499396ed322983f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045804945349456
 GameObject:
   m_ObjectHideFlags: 0

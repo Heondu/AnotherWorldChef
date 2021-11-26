@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour, ILivingEntity
     [SerializeField] private float moveRange = 5;
     [SerializeField] private float detectRange = 5;
     [SerializeField] private float chaseRange = 10;
-    [SerializeField] private float attackRange = 1;
+    [SerializeField] private float hitNotifyRange = 5;
     [SerializeField] private float patrolSpeed = 2;
     [SerializeField] private float chaseSpeed = 3;
     [SerializeField] private float rotateSpeed = 5;
@@ -27,8 +27,8 @@ public class Enemy : MonoBehaviour, ILivingEntity
     private bool isAttacking = false;
     private bool isHit = false;
 
-    public Dictionary<Skill, SkillTimer> skillTimers = new Dictionary<Skill, SkillTimer>();
     private Skill nextSkill = null;
+    private SkillShooting skillShooting;
 
     private void Start()
     {
@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour, ILivingEntity
         navMeshAgent = GetComponent<NavMeshAgent>();
         status = GetComponent<Status>();
         rigidbody = GetComponent<Rigidbody>();
+        skillShooting = GetComponent<SkillShooting>();
         state = EnemyState.Idle;
         originPos = transform.position;
     }
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour, ILivingEntity
     {
         if (state == EnemyState.Death) return;
 
+        CheckForNextSkill();
         DetectPlayer();
         FSM();
     }
@@ -58,17 +60,17 @@ public class Enemy : MonoBehaviour, ILivingEntity
         if (colliders.Length > 0)
         {
             target = colliders[0].transform;
-            if (Vector3.Distance(target.position, transform.position) > attackRange)
+            if (nextSkill == null)
             {
                 state = EnemyState.Chase;
             }
-            else if (CheckForNextSkill())
+            else if (Vector3.Distance(target.position, transform.position) <= nextSkill.attackRange)
             {
                 state = EnemyState.Attack;
             }
             else
             {
-                state = EnemyState.Idle;
+                state = EnemyState.Chase;
             }
         }
         else if (!isHit)
@@ -83,10 +85,20 @@ public class Enemy : MonoBehaviour, ILivingEntity
 
     private void FindRandomPos()
     {
-        Vector3 destination = originPos;
-        destination.x += Random.Range(-1f, 1f) * moveRange;
-        destination.z += Random.Range(-1f, 1f) * moveRange;
-        navMeshAgent.SetDestination(destination);
+        Vector3 randomDirection = Random.insideUnitSphere * moveRange;
+        randomDirection += originPos;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randomDirection, out navHit, moveRange, -1);
+        navMeshAgent.SetDestination(navHit.position);
+        StartCoroutine("ResetDestination", 3f);
+    }
+
+    private IEnumerator ResetDestination(float t)
+    {
+        yield return new WaitForSeconds(t);
+
+        if (state == EnemyState.Patrol)
+            navMeshAgent.SetDestination(transform.position);
     }
 
     private IEnumerator Wait(float t)
@@ -129,7 +141,7 @@ public class Enemy : MonoBehaviour, ILivingEntity
             case EnemyState.Attack:
                 if (isAttacking) break;
                 navMeshAgent.ResetPath();
-                StartCoroutine("LookAt", target.position - transform.position);
+                StartCoroutine("LookAt", GetTargetDirection(true));
                 if (nextSkill != null)
                 {
                     isAttacking = true;
@@ -158,25 +170,34 @@ public class Enemy : MonoBehaviour, ILivingEntity
     public void TakeDamage(int damage, GameObject eventInstigator, Transform damageCauser)
     {
         status.HP = Mathf.Max(0, status.HP - damage);
-        Debug.Log($"{name} : {status.HP}");
         rigidbody.AddForce((transform.position - damageCauser.position).normalized * 100, ForceMode.Impulse);
-        target = eventInstigator.transform;
-        StopCoroutine("Hit");
-        StartCoroutine("Hit", chaseTimeAtHit);
+        //if (state != EnemyState.Patrol)
+        //{
+        //    AttackEnd();
+        //    animator.Play("Hit");
+        //}
+        Collider[] colliders = Physics.OverlapSphere(transform.position, hitNotifyRange, 1 << LayerMask.NameToLayer("Enemy"));
+        foreach (Collider collider in colliders)
+        {
+            Enemy enemy = collider.GetComponent<Enemy>();
+            enemy.target = eventInstigator.transform;
+            enemy.StopCoroutine("HitChase");
+            enemy.StartCoroutine("HitChase", chaseTimeAtHit);
+        }
 
         if (status.HP == 0)
         {
             state = EnemyState.Death;
             navMeshAgent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
-            animator.SetTrigger("death");
+            animator.Play("Death");
             if (Random.Range(0, 100) < skillSpawnProb)
                 Instantiate(pickUpObject, transform.position, Quaternion.identity);
             Destroy(gameObject, 5);
         }
     }
 
-    private IEnumerator Hit(float t)
+    public IEnumerator HitChase(float t)
     {
         isHit = true;
         state = EnemyState.Chase;
@@ -206,13 +227,12 @@ public class Enemy : MonoBehaviour, ILivingEntity
 
         Skill skill = status.skills[Random.Range(0, status.skills.Count)];
 
-        if (skillTimers.ContainsKey(skill) == false)
+        if (skillShooting.skillTimers.ContainsKey(skill) == false)
         {
-            skillTimers.Add(skill, new SkillTimer(skill, Time.time));
             nextSkill = skill;
             return true;
         }
-        else if (skillTimers[skill].CanAttack() == false)
+        else if (skillShooting.skillTimers[skill].CanAttack() == false)
         {
             nextSkill = null;
             return false;
@@ -226,36 +246,11 @@ public class Enemy : MonoBehaviour, ILivingEntity
 
     private void AttackStart()
     {
-        skillTimers[nextSkill].SetLastAttackTime();
-
         rigidbody.AddForce((target.position - transform.position).normalized * 100, ForceMode.Impulse);
 
-        Skill clone = null;
-        if (nextSkill.skillType == SkillType.Cursor)
-        {
-            clone = Instantiate(nextSkill, target.position, Quaternion.identity);
-        }
-        else if (nextSkill.skillType == SkillType.Explode)
-        {
-            clone = Instantiate(nextSkill, transform.position, Quaternion.identity);
-        }
-        else if (nextSkill.skillType == SkillType.Projectile)
-        {
-            clone = Instantiate(nextSkill, transform.position + transform.forward + Vector3.up, Quaternion.LookRotation(transform.forward));
-        }
+        skillShooting.SkillShot(nextSkill, GetComponent<ILivingEntity>(), status.Damage);
 
-        clone.Init(status.Damage, gameObject);
-        AutoDestroy(clone.gameObject);
         nextSkill = null;
-    }
-
-    private void AutoDestroy(GameObject hitInstance)
-    {
-        var hitPs = hitInstance.GetComponent<ParticleSystem>();
-        if (hitPs != null)
-        {
-            Destroy(hitInstance, hitPs.main.duration);
-        }
     }
 
     private void ComboCheck()
@@ -267,5 +262,29 @@ public class Enemy : MonoBehaviour, ILivingEntity
     {
         isAttacking = false;
         state = EnemyState.Idle;
+    }
+
+    public Vector3 GetAttackPosition()
+    {
+        return target.position;
+    }
+
+    public Vector3 GetAttackDirection()
+    {
+        return GetTargetDirection(false);
+    }
+
+    private Vector3 GetTargetDirection(bool freezeY)
+    {
+        if (freezeY)
+        {
+            Vector3 from = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 to = new Vector3(target.position.x, 0, target.position.z);
+            return (to - from).normalized;
+        }
+        else
+        {
+            return (target.position - transform.position).normalized;
+        }
     }
 }

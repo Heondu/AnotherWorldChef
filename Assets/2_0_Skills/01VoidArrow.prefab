@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -7459144175849597161}
   m_Layer: 0
   m_Name: 01VoidArrow
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4988,7 +4988,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519322442116508}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
@@ -5012,6 +5012,9 @@ MonoBehaviour:
     \uC804\uBC29\uC73C\uB85C \uBC1C\uC0AC\uD55C\uB2E4."
   skillDamageMult: 1
   coolTime: 3
+  attackRange: 8
+  damage: 0
+  eventInstigator: {fileID: 0}
 --- !u!114 &-7459144175849597161
 MonoBehaviour:
   m_ObjectHideFlags: 0

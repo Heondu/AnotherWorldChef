@@ -94,3 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5eb6bf7247dc84aabc896de1265e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraOffset: {x: 16, y: 32, z: 16}
+  gameManager: {fileID: 7233918252830832124, guid: 9dc149c90d7a2b842a9040bdd1669dfa, type: 3}

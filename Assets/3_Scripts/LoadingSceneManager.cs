@@ -32,4 +32,9 @@ public class LoadingSceneManager : MonoBehaviour
     {
         op.allowSceneActivation = true;
     }
+
+    public static void RestartScene()
+    {
+        LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

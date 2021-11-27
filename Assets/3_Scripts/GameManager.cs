@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool IsStop = false;
     [HideInInspector] public bool IsDead = false;
     [HideInInspector] public bool IsFirstPlay = true;
+    [HideInInspector] public bool isFirstInit = true;
     private int currentSceneIndex = 0;
     private int PlayerHP = 100;
 
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         IsStop = false;
         IsDead = false;
         IsFirstPlay = true;
+        isFirstInit = true;
         PlayerHP = player.GetComponent<Status>().MaxHP;
     }
 
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
         PlayerController playerController = Instantiate(player, startPoint.position, startPoint.rotation);
         playerController.Init(Instantiate(brainCamera), PlayerHP);
         Instantiate(virtualCamera).Init(playerController.transform, cameraOffset);
-        Instantiate(inventory).Init();
+        Instantiate(inventory);
         Instantiate(canvas).Init();
         Instantiate(eventSystem);
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex - 2;
@@ -114,5 +116,6 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(directionMark);
         }
+        isFirstInit = false;
     }
 }

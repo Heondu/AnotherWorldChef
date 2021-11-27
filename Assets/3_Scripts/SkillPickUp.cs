@@ -11,8 +11,11 @@ public class SkillPickUp : MonoBehaviour
             Skill skill = skills[Random.Range(0, skills.Length)];
             bool wasPickedUp = Inventory.Instance.Add(skill);
 
-            if (wasPickedUp)
-                Destroy(gameObject);
+            Status playerStatus = other.GetComponent<Status>();
+            playerStatus.HP = Mathf.Min(playerStatus.MaxHP, playerStatus.HP + 10);
+            other.GetComponent<PlayerController>().onHPValueChanged.Invoke();
+
+            Destroy(gameObject);
         }
     }
 }

@@ -55,3 +55,4 @@ MonoBehaviour:
   IsStop: 0
   IsDead: 0
   IsFirstPlay: 1
+  isFirstInit: 0

@@ -40,7 +40,7 @@ public class InventoryUI : MonoBehaviour
         Inventory.Instance.onItemChanged += UpdateShortcut;
         for (int i = 0; i < 4; i++)
         {
-            if (GameManager.Instance.IsFirstPlay)
+            if (GameManager.Instance.isFirstInit)
             {
                 Inventory.Instance.shortcuts[i] = playerStatus.skills[i + 1];
             }

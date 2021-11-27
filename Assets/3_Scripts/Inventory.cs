@@ -34,10 +34,6 @@ public class Inventory : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void Init()
-    {
         for (int i = 0; i < space; i++)
         {
             skills.Add(null);
@@ -54,6 +50,13 @@ public class Inventory : MonoBehaviour
                 nullIndex = i;
             }
             if (skills[i] == skill)
+            {
+                return true;
+            }
+        }
+        for (int i = 0; i < shortcuts.Length; i++)
+        {
+            if (shortcuts[i] == skill)
             {
                 return true;
             }
